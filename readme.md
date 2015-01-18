@@ -43,6 +43,11 @@ Type: `string`
 Type: `function`
 
 
+## Related
+
+- [`package-json`](https://github.com/sindresorhus/package-json) - Get the package.json of a package from the npm registry
+
+
 ## License
 
 MIT © [Sindre Sorhus](http://sindresorhus.com)
