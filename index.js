@@ -26,5 +26,5 @@ module.exports = function (keyword, cb) {
 
 module.exports.url = function (keyword) {
 	keyword = encodeURIComponent(keyword);
-	return registryUrl() + '-/_view/byKeyword?startkey=[%22' + keyword + '%22]&endkey=[%22' + keyword + '%22,{}]&group_level=3';
+	return registryUrl() + '-/_view/byKeyword?startkey=[%22' + keyword + '%22]&endkey=[%22' + keyword + '%22,%7B%7D]&group_level=3';
 };
