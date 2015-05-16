@@ -45,7 +45,9 @@ Type: `function`
 
 ## Related
 
-- [`package-json`](https://github.com/sindresorhus/package-json) - Get the package.json of a package from the npm registry
+- [package-json](https://github.com/sindresorhus/package-json) - Get the package.json of a package from the npm registry
+- [npm-user](https://github.com/sindresorhus/npm-user) - Get user info of a npm user
+- [npm-email](https://github.com/sindresorhus/npm-email) - Get the email of a npm user
 
 
 ## License
