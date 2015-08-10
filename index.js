@@ -3,7 +3,7 @@ var got = require('got');
 var registryUrl = require('registry-url');
 var objectAssign = require('object-assign');
 
-function npmKeywordUrl (keyword, description) {
+function getUrl(keyword, description) {
 	keyword = encodeURIComponent(keyword);
 
 	return registryUrl() +
@@ -19,24 +19,21 @@ module.exports = function (keyword, opts, cb) {
 	}
 
 	cb = typeof opts === 'function' ? opts : cb;
+	opts = objectAssign({description: true}, opts);
 
-	opts = objectAssign({
-		description: true
-	}, opts);
-
-	got(npmKeywordUrl(keyword, opts.description), function (err, data) {
+	got(getUrl(keyword, opts.description), function (err, data) {
 		if (err) {
 			cb(err);
 			return;
 		}
 
 		cb(null, JSON.parse(data).rows.map(function (el) {
-			var row = {
-				name: el.key[1],
-			};
+			var row = {name: el.key[1]};
+
 			if (el.key[2]) {
 				row.description = el.key[2];
 			}
+
 			return row;
 		}));
 	});

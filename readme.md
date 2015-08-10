@@ -24,18 +24,22 @@ npmKeyword('gulpplugin', function (err, packages) {
 
 ## API
 
-### npmKeyword(keyword, callback)
+### npmKeyword(keyword, [options], callback)
 
 Get a list of packages having the specified keyword in their package.json `keyword` property.
-
-### npmKeyword.url(keyword)
-
-Get the url used for fetching the list from the npm registry. You usually won't need this.
 
 #### keyword
 
 *Required*  
 Type: `string`
+
+#### options.description
+
+Type: `boolean`  
+Default: `true`
+
+Include package description.  
+Set to `false` if not needed for faster download.
 
 #### callback(error, packages)
 

@@ -14,19 +14,28 @@ test('npmKeyword()', function (t) {
 });
 
 test('no description', function (t) {
-	npmKeyword('gulpplugin', function (err, packages) {
+	t.plan(2);
+
+	npmKeyword('gulpplugin', {description: false}, function (err, packages) {
+		t.assert(!err, err);
 		t.assert(!packages[0].description);
-	}, {description: false});
+	});
 });
 
 test('include description', function (t) {
+	t.plan(2);
+
 	npmKeyword('gulpplugin', function (err, packages) {
+		t.assert(!err, err);
 		t.assert(packages[0].description.length > 0);
-	}, {description: true});
+	});
 });
 
 test('defaults to including description', function (t) {
+	t.plan(2);
+
 	npmKeyword('gulpplugin', function (err, packages) {
+		t.assert(!err, err);
 		t.assert(packages[0].description.length > 0);
 	});
 });
