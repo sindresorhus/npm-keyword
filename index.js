@@ -19,15 +19,9 @@ module.exports = function (keyword, opts, cb) {
 	}
 
 	cb = typeof opts === 'function' ? opts : cb;
-	opts = objectAssign({description: true}, opts);
-
-	got(getUrl(keyword, opts.description), function (err, data) {
-		if (err) {
-			cb(err);
-			return;
-		}
-
-		cb(null, JSON.parse(data).rows.map(function (el) {
+	opts = objectAssign({
+		description: true,
+		format: function (el) {
 			var row = {name: el.key[1]};
 
 			if (el.key[2]) {
@@ -35,6 +29,15 @@ module.exports = function (keyword, opts, cb) {
 			}
 
 			return row;
-		}));
+		}
+	}, opts);
+
+	got(getUrl(keyword, opts.description), function (err, data) {
+		if (err) {
+			cb(err);
+			return;
+		}
+
+		cb(null, JSON.parse(data).rows.map(opts.format));
 	});
 };
