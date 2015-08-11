@@ -39,3 +39,17 @@ test('defaults to including description', function (t) {
 		t.assert(packages[0].description.length > 0);
 	});
 });
+
+test('uses custom formatter', function (t) {
+	t.plan(3);
+
+	var format = function (el) {
+		return el.key[1];
+	};
+
+	npmKeyword('gulpplugin', {format: format}, function (err, packages) {
+		t.assert(!err, err);
+		t.assert(Array.isArray(packages));
+		t.assert(typeof packages[0] === 'string');
+	});
+});
