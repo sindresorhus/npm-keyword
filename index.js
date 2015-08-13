@@ -53,3 +53,14 @@ module.exports.names = function (keyword, cb) {
 		}));
 	});
 };
+
+module.exports.count = function (keyword, cb) {
+	get(keyword, 1, function (err, data) {
+		if (err) {
+			cb(err);
+			return;
+		}
+
+		cb(null, data[0].value);
+	});
+};

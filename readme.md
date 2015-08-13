@@ -24,6 +24,11 @@ npmKeyword.names('gulpplugin', function (err, packageNames) {
 	console.log(packageNames);
 	//=> ['gulp-autoprefixer', ...]
 });
+
+npmKeyword.count('gulpplugin', function (err, count) {
+	console.log(count);
+	//=> 1930
+});
 ```
 
 
@@ -35,7 +40,11 @@ Get a list of packages having the specified keyword in their package.json `keywo
 
 ### npmKeyword.names(keyword, callback)
 
-Get a list of package names without description. Use this if you don't need the description as it's faster.
+Get a list of package names. Use this if you don't need the description as it's faster.
+
+### npmKeyword.count(keyword, callback)
+
+Get the count of packages.
 
 
 ## Related
