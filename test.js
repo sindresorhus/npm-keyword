@@ -13,29 +13,12 @@ test('npmKeyword()', function (t) {
 	});
 });
 
-test('no description', function (t) {
-	t.plan(2);
+test('npmKeyword.names()', function (t) {
+	t.plan(3);
 
-	npmKeyword('gulpplugin', {description: false}, function (err, packages) {
+	npmKeyword.names('gulpplugin', function (err, packageNames) {
 		t.assert(!err, err);
-		t.assert(!packages[0].description);
-	});
-});
-
-test('include description', function (t) {
-	t.plan(2);
-
-	npmKeyword('gulpplugin', function (err, packages) {
-		t.assert(!err, err);
-		t.assert(packages[0].description.length > 0);
-	});
-});
-
-test('defaults to including description', function (t) {
-	t.plan(2);
-
-	npmKeyword('gulpplugin', function (err, packages) {
-		t.assert(!err, err);
-		t.assert(packages[0].description.length > 0);
+		t.assert(typeof packageNames[0] === 'string');
+		t.assert(packageNames[0].length > 0);
 	});
 });

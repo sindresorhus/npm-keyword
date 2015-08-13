@@ -19,32 +19,23 @@ npmKeyword('gulpplugin', function (err, packages) {
 	console.log(packages);
 	//=> [{name: 'gulp-autoprefixer', description: '...'}, ...]
 });
+
+npmKeyword.names('gulpplugin', function (err, packageNames) {
+	console.log(packageNames);
+	//=> ['gulp-autoprefixer', ...]
+});
 ```
 
 
 ## API
 
-### npmKeyword(keyword, [options], callback)
+### npmKeyword(keyword, callback)
 
 Get a list of packages having the specified keyword in their package.json `keyword` property.
 
-#### keyword
+### npmKeyword.names(keyword, callback)
 
-*Required*  
-Type: `string`
-
-#### options.description
-
-Type: `boolean`  
-Default: `true`
-
-Include package description.  
-Set to `false` if not needed for faster download.
-
-#### callback(error, packages)
-
-*Required*  
-Type: `function`
+Get a list of package names without description. Use this if you don't need the description as it's faster.
 
 
 ## Related
