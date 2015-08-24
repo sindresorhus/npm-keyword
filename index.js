@@ -61,6 +61,9 @@ module.exports.count = function (keyword, cb) {
 			return;
 		}
 
-		cb(null, data[0].value);
+		cb(null, data[0] ?
+			data[0].value :
+			0
+		);
 	});
 };
