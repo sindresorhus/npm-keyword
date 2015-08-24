@@ -24,11 +24,16 @@ test('npmKeyword.names()', function (t) {
 });
 
 test('npmKeyword.count()', function (t) {
-	t.plan(3);
+	t.plan(5);
 
 	npmKeyword.count('gulpplugin', function (err, count) {
 		t.assert(!err, err);
 		t.assert(typeof count === 'number');
 		t.assert(count > 0);
+	});
+
+	npmKeyword.count('äąâ', function (err, count) {
+		t.assert(!err, err);
+		t.assert(count === 0);
 	});
 });
