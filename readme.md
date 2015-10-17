@@ -36,16 +36,15 @@ npmKeyword.count('gulpplugin').then(count => {
 
 ### npmKeyword(keyword)
 
-Get a list of packages having the specified keyword in their package.json `keyword` property. Returns a promise that resolves to an array of objects containing the package info.
+Returns a promise for a list of packages having the specified keyword in their package.json `keyword` property.
 
 ### npmKeyword.names(keyword)
 
-Get a list of package names. Use this if you don't need the description as it's faster. Returns a promise that resolves to an array with the names.
+Returns a promise for a list of package names. Use this if you don't need the description as it's faster.
 
 ### npmKeyword.count(keyword)
 
-Get the count of packages. Returns a promise that resolves to a number with the count.
-
+Returns a promise for the count of packages.
 
 ## Related
 

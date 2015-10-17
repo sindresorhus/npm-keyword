@@ -1,10 +1,11 @@
 'use strict';
 var got = require('got');
 var registryUrl = require('registry-url');
+var Promise = require('pinkie-promise');
 
 function get(keyword, level) {
 	if (typeof keyword !== 'string') {
-		throw new TypeError('Keyword must be a string');
+		return Promise.reject(new TypeError('Keyword must be a string'));
 	}
 
 	keyword = encodeURIComponent(keyword);

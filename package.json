@@ -30,7 +30,8 @@
   ],
   "dependencies": {
     "got": "^4.1.1",
-    "object-assign": "^3.0.0",
+    "object-assign": "^4.0.1",
+    "pinkie-promise": "^1.0.0",
     "registry-url": "^3.0.3"
   },
   "devDependencies": {
@@ -38,7 +39,7 @@
     "xo": "*"
   },
   "xo": {
-    "ignore": [
+    "ignores": [
       "test.js"
     ]
   }
