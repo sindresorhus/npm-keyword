@@ -13,19 +13,19 @@ $ npm install --save npm-keyword
 ## Usage
 
 ```js
-var npmKeyword = require('npm-keyword');
+const npmKeyword = require('npm-keyword');
 
-npmKeyword('gulpplugin', function (err, packages) {
+npmKeyword('gulpplugin').then(packages => {
 	console.log(packages);
 	//=> [{name: 'gulp-autoprefixer', description: '...'}, ...]
 });
 
-npmKeyword.names('gulpplugin', function (err, packageNames) {
+npmKeyword.names('gulpplugin').then(packageNames => {
 	console.log(packageNames);
 	//=> ['gulp-autoprefixer', ...]
 });
 
-npmKeyword.count('gulpplugin', function (err, count) {
+npmKeyword.count('gulpplugin').then(count => {
 	console.log(count);
 	//=> 1930
 });
@@ -34,17 +34,17 @@ npmKeyword.count('gulpplugin', function (err, count) {
 
 ## API
 
-### npmKeyword(keyword, callback)
+### npmKeyword(keyword)
 
-Get a list of packages having the specified keyword in their package.json `keyword` property.
+Get a list of packages having the specified keyword in their package.json `keyword` property. Returns a promise that resolves to an array of objects containing the package info.
 
-### npmKeyword.names(keyword, callback)
+### npmKeyword.names(keyword)
 
-Get a list of package names. Use this if you don't need the description as it's faster.
+Get a list of package names. Use this if you don't need the description as it's faster. Returns a promise that resolves to an array with the names.
 
-### npmKeyword.count(keyword, callback)
+### npmKeyword.count(keyword)
 
-Get the count of packages.
+Get the count of packages. Returns a promise that resolves to a number with the count.
 
 
 ## Related
