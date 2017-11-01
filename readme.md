@@ -23,9 +23,13 @@ const npmKeyword = require('npm-keyword');
 	//=> ['gulp-autoprefixer', …]
 
 	console.log(await npmKeyword.count('gulpplugin'));
-	//=> 1930
+	//=> 3457
 })();
 ```
+
+## Caveat
+
+The list of packages will contain the first 250 packages matching the keyword. This limitation is caused by the [npm registry API](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md#get-v1search).
 
 
 ## API

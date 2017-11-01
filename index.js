@@ -2,35 +2,31 @@
 const got = require('got');
 const registryUrl = require('registry-url');
 
-function get(keyword, level) {
+function get(keyword, size) {
 	if (typeof keyword !== 'string') {
 		return Promise.reject(new TypeError('Keyword must be a string'));
 	}
 
 	keyword = encodeURIComponent(keyword);
 
-	const url = registryUrl() +
-		'-/_view/byKeyword?' +
-		'startkey=[%22' + keyword + '%22]' +
-		'&endkey=[%22' + keyword + '%22,%7B%7D]' +
-		'&group_level=' + level;
+	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${size}`;
 
-	return got(url, {json: true}).then(response => response.body.rows);
+	return got(url, {json: true}).then(response => response.body);
 }
 
 module.exports = keyword => {
-	return get(keyword, 3).then(data => {
-		return data.map(el => ({
-			name: el.key[1],
-			description: el.key[2]
+	return get(keyword, 250).then(data => {
+		return data.objects.map(el => ({
+			name: el.package.name,
+			description: el.package.description
 		}));
 	});
 };
 
 module.exports.names = keyword => {
-	return get(keyword, 2).then(data => data.map(x => x.key[1]));
+	return get(keyword, 250).then(data => data.objects.map(x => x.package.name));
 };
 
 module.exports.count = keyword => {
-	return get(keyword, 1).then(data => data[0] ? data[0].value : 0);
+	return get(keyword, 1).then(data => data.total);
 };
