@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save npm-keyword
+$ npm install npm-keyword
 ```
 
 
@@ -15,20 +15,16 @@ $ npm install --save npm-keyword
 ```js
 const npmKeyword = require('npm-keyword');
 
-npmKeyword('gulpplugin').then(packages => {
-	console.log(packages);
-	//=> [{name: 'gulp-autoprefixer', description: '...'}, ...]
-});
+(async () => {
+	console.log(await npmKeyword('gulpplugin'));
+	//=> [{name: 'gulp-autoprefixer', description: '…'}, …]
 
-npmKeyword.names('gulpplugin').then(packageNames => {
-	console.log(packageNames);
-	//=> ['gulp-autoprefixer', ...]
-});
+	console.log(await npmKeyword.names('gulpplugin');
+	//=> ['gulp-autoprefixer', …]
 
-npmKeyword.count('gulpplugin').then(count => {
-	console.log(count);
+	console.log(await npmKeyword.count('gulpplugin'));
 	//=> 1930
-});
+})();
 ```
 
 
@@ -46,6 +42,7 @@ Returns a promise for a list of package names. Use this if you don't need the de
 
 Returns a promise for the count of packages.
 
+
 ## Related
 
 - [package-json](https://github.com/sindresorhus/package-json) - Get the package.json of a package from the npm registry
@@ -55,4 +52,4 @@ Returns a promise for the count of packages.
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)

@@ -1,8 +1,8 @@
 import test from 'ava';
-import npmKeyword from './';
+import m from '.';
 
 test('npmKeyword()', async t => {
-	const packages = await npmKeyword('gulpplugin');
+	const packages = await m('gulpplugin');
 
 	t.true(packages.length > 0);
 	t.true(packages[0].name.length > 0);
@@ -10,15 +10,15 @@ test('npmKeyword()', async t => {
 });
 
 test('npmKeyword.names()', async t => {
-	const packageNames = await npmKeyword.names('gulpplugin');
+	const packageNames = await m.names('gulpplugin');
 
 	t.is(typeof packageNames[0], 'string');
 	t.true(packageNames[0].length > 0);
 });
 
 test('npmKeyword.count()', async t => {
-	const cnt1 = await npmKeyword.count('gulpplugin');
-	const cnt2 = await npmKeyword.count('äąâ');
+	const cnt1 = await m.count('gulpplugin');
+	const cnt2 = await m.count('äąâ');
 
 	t.true(cnt1 > 0);
 	t.is(typeof cnt1, 'number');
