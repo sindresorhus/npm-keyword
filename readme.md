@@ -19,7 +19,7 @@ const npmKeyword = require('npm-keyword');
 	console.log(await npmKeyword('gulpplugin'));
 	//=> [{name: 'gulp-autoprefixer', description: '…'}, …]
 
-	console.log(await npmKeyword.names('gulpplugin');
+	console.log(await npmKeyword.names('gulpplugin'));
 	//=> ['gulp-autoprefixer', …]
 
 	console.log(await npmKeyword.count('gulpplugin'));
