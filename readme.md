@@ -29,16 +29,18 @@ const npmKeyword = require('npm-keyword');
 
 ## Caveat
 
-The list of packages will contain the first 250 packages matching the keyword. This limitation is caused by the [npm registry API](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md#get-v1search).
+The list of packages will contain a maximum of 250 packages matching the keyword. This limitation is caused by the [npm registry API](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md#get-v1search).
 
 
 ## API
 
-### npmKeyword(keyword)
+### npmKeyword(keyword, [options])
 
 Returns a promise for a list of packages having the specified keyword in their package.json `keyword` property.
 
-### npmKeyword.names(keyword)
+The `options` parameter can be used to limit the amount of results via `npmKeyword('gulpplugin', {size: 10})`.
+
+### npmKeyword.names(keyword, [options])
 
 Returns a promise for a list of package names. Use this if you don't need the description as it's faster.
 
