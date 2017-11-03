@@ -15,7 +15,8 @@ function get(keyword, options) {
 }
 
 module.exports = (keyword, options) => {
-	options = options || {size: 250};
+	options = Object.assign({size: 250}, options);
+
 	return get(keyword, options).then(data => {
 		return data.objects.map(el => ({
 			name: el.package.name,
@@ -25,7 +26,8 @@ module.exports = (keyword, options) => {
 };
 
 module.exports.names = (keyword, options) => {
-	options = options || {size: 250};
+	options = Object.assign({size: 250}, options);
+
 	return get(keyword, options).then(data => data.objects.map(x => x.package.name));
 };
 

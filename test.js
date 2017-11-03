@@ -9,10 +9,16 @@ test('npmKeyword()', async t => {
 	t.true(packages[0].description.length > 0);
 });
 
-test('npmKeyword(10)', async t => {
+test('npmKeyword() using the size option', async t => {
 	const packages = await m('gulpplugin', {size: 10});
 
 	t.is(packages.length, 10);
+});
+
+test('npmKeyword() using invalid options', async t => {
+	const packages = await m('gulpplugin', {foo: 'bar'});
+
+	t.true(packages.length === 250);
 });
 
 test('npmKeyword.names()', async t => {
@@ -23,10 +29,16 @@ test('npmKeyword.names()', async t => {
 	t.true(packageNames[0].length > 0);
 });
 
-test('npmKeyword.names(10)', async t => {
+test('npmKeyword.names() using the size option', async t => {
 	const packageNames = await m.names('gulpplugin', {size: 10});
 
 	t.is(packageNames.length, 10);
+});
+
+test('npmKeyword.names() using invalid options', async t => {
+	const packageNames = await m.names('gulpplugin', {foo: 'bar'});
+
+	t.true(packageNames.length === 250);
 });
 
 test('npmKeyword.count()', async t => {
