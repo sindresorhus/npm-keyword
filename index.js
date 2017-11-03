@@ -7,6 +7,10 @@ function get(keyword, options) {
 		return Promise.reject(new TypeError('Keyword must be a string'));
 	}
 
+	if (options.size < 1 || options.size > 250) {
+		return Promise.reject(new TypeError('Size option must be between 1 and 250'));
+	}
+
 	keyword = encodeURIComponent(keyword);
 
 	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${options.size}`;
@@ -32,5 +36,5 @@ module.exports.names = (keyword, options) => {
 };
 
 module.exports.count = keyword => {
-	return get(keyword, {size: 0}).then(data => data.total);
+	return get(keyword, {size: 1}).then(data => data.total);
 };

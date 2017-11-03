@@ -18,7 +18,19 @@ test('npmKeyword() using the size option', async t => {
 test('npmKeyword() using invalid options', async t => {
 	const packages = await m('gulpplugin', {foo: 'bar'});
 
-	t.true(packages.length === 250);
+	t.is(packages.length, 250);
+});
+
+test('npmKeyword() size < 1', async t => {
+	const error = await t.throws(m('gulpplugin', {size: 0}));
+
+	t.is(error.message, 'Size option must be between 1 and 250');
+});
+
+test('npmKeyword() size > 250', async t => {
+	const error = await t.throws(m('gulpplugin', {size: 255}));
+
+	t.is(error.message, 'Size option must be between 1 and 250');
 });
 
 test('npmKeyword.names()', async t => {
@@ -38,7 +50,7 @@ test('npmKeyword.names() using the size option', async t => {
 test('npmKeyword.names() using invalid options', async t => {
 	const packageNames = await m.names('gulpplugin', {foo: 'bar'});
 
-	t.true(packageNames.length === 250);
+	t.is(packageNames.length, 250);
 });
 
 test('npmKeyword.count()', async t => {
