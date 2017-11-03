@@ -23,25 +23,68 @@ const npmKeyword = require('npm-keyword');
 	//=> ['gulp-autoprefixer', …]
 
 	console.log(await npmKeyword.count('gulpplugin'));
-	//=> 1930
+	//=> 3457
 })();
 ```
+
+## Caveat
+
+The list of packages will contain a maximum of 250 packages matching the keyword. This limitation is caused by the [npm registry API](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md#get-v1search).
 
 
 ## API
 
-### npmKeyword(keyword)
+### npmKeyword(keyword, [options])
 
 Returns a promise for a list of packages having the specified keyword in their package.json `keyword` property.
 
-### npmKeyword.names(keyword)
+#### keyword
+
+Type: `string`
+
+The search keyword.
+
+#### options
+
+Type: `object`
+
+##### size
+
+Type: `number`
+Default: `250`
+
+Limits the amount of results.
+
+### npmKeyword.names(keyword, [options])
 
 Returns a promise for a list of package names. Use this if you don't need the description as it's faster.
+
+#### keyword
+
+Type: `string`
+
+The search keyword.
+
+#### options
+
+Type: `object`
+
+##### size
+
+Type: `number`
+Default: `250`
+
+Limits the amount of results.
 
 ### npmKeyword.count(keyword)
 
 Returns a promise for the count of packages.
 
+#### keyword
+
+Type: `string`
+
+The search keyword.
 
 ## Related
 
