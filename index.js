@@ -3,15 +3,15 @@ const got = require('got');
 const registryUrl = require('registry-url');
 
 function get(keyword, options) {
-	if (typeof keyword !== 'string') {
-		return Promise.reject(new TypeError('Keyword must be a string'));
+	if (typeof keyword !== 'string' && !Array.isArray(keyword)) {
+		return Promise.reject(new TypeError('Keyword must be either a string or an array of strings'));
 	}
 
 	if (options.size < 1 || options.size > 250) {
 		return Promise.reject(new TypeError('Size option must be between 1 and 250'));
 	}
 
-	keyword = encodeURIComponent(keyword);
+	keyword = encodeURIComponent(keyword).replace('%2C', '+');
 
 	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${options.size}`;
 
