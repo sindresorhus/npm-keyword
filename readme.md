@@ -38,16 +38,53 @@ The list of packages will contain a maximum of 250 packages matching the keyword
 
 Returns a promise for a list of packages having the specified keyword in their package.json `keyword` property.
 
-The `options` parameter can be used to limit the amount of results via `npmKeyword('gulpplugin', {size: 10})`.
+#### keyword
+
+Type: `string`
+
+The search keyword.
+
+#### options
+
+Type: `object`
+
+##### size
+
+Type: `number`
+Default: `250`
+
+Limits the amount of results.
 
 ### npmKeyword.names(keyword, [options])
 
 Returns a promise for a list of package names. Use this if you don't need the description as it's faster.
 
+#### keyword
+
+Type: `string`
+
+The search keyword.
+
+#### options
+
+Type: `object`
+
+##### size
+
+Type: `number`
+Default: `250`
+
+Limits the amount of results.
+
 ### npmKeyword.count(keyword)
 
 Returns a promise for the count of packages.
 
+#### keyword
+
+Type: `string`
+
+The search keyword.
 
 ## Related
 
