@@ -54,10 +54,24 @@ test('npmKeyword.names() using invalid options', async t => {
 });
 
 test('npmKeyword.count()', async t => {
-	const cnt1 = await m.count('gulpplugin');
-	const cnt2 = await m.count('äąâ');
+	const packagesWithValidKeyword = await m.count('gulpplugin');
+	const packagesWithInvalidKeyword = await m.count('äąâ');
 
-	t.true(cnt1 > 0);
-	t.is(typeof cnt1, 'number');
-	t.is(cnt2, 0);
+	t.true(packagesWithValidKeyword > 0);
+	t.is(typeof packagesWithValidKeyword, 'number');
+	t.is(packagesWithInvalidKeyword, 0);
+});
+
+test('npmKeyword.count() using an array of keywords', async t => {
+	const packagesWithOneKeyword = await m.count('gulpplugin');
+	const packagesWithMultipleKeywords = await m.count(['gulpplugin', 'sass', 'css']);
+
+	t.true(packagesWithMultipleKeywords > 0);
+	t.true(packagesWithMultipleKeywords < packagesWithOneKeyword);
+});
+
+test('npmKeyword.count() using wrong type for keywords parameter', async t => {
+	const error = await t.throws(m.count({keyword: 'gulpplugin'}));
+
+	t.is(error.message, 'Keyword must be either a string or an array of strings');
 });
