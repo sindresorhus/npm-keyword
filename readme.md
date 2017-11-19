@@ -40,9 +40,10 @@ Returns a promise for a list of packages having the specified keyword in their p
 
 #### keyword
 
-Type: `string`
+Type: `string` `string[]`<br>
+Example: `['string', 'camelcase']`
 
-The search keyword.
+One or more keywords. Only matches packages that have *all* the given keywords.
 
 #### options
 
@@ -50,7 +51,7 @@ Type: `object`
 
 ##### size
 
-Type: `number`
+Type: `number`<br>
 Default: `250`
 
 Limits the amount of results.
@@ -61,9 +62,10 @@ Returns a promise for a list of package names. Use this if you don't need the de
 
 #### keyword
 
-Type: `string`
+Type: `string` `string[]`<br>
+Example: `['string', 'camelcase']`
 
-The search keyword.
+One or more keywords. Only matches packages that have *all* the given keywords.
 
 #### options
 
@@ -71,7 +73,7 @@ Type: `object`
 
 ##### size
 
-Type: `number`
+Type: `number`<br>
 Default: `250`
 
 Limits the amount of results.
@@ -82,9 +84,11 @@ Returns a promise for the count of packages.
 
 #### keyword
 
-Type: `string`
+Type: `string` `string[]`<br>
+Example: `['string', 'camelcase']`
 
-The search keyword.
+One or more keywords. Only matches packages that have *all* the given keywords.
+
 
 ## Related
 
