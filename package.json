@@ -1,39 +1,41 @@
 {
-  "name": "npm-keyword",
-  "version": "5.0.0",
-  "description": "Get a list of npm packages with a certain keyword",
-  "license": "MIT",
-  "repository": "sindresorhus/npm-keyword",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "npm",
-    "keyword",
-    "package",
-    "packages",
-    "pkg",
-    "registry",
-    "find",
-    "search"
-  ],
-  "dependencies": {
-    "got": "^7.1.0",
-    "registry-url": "^3.0.3"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "xo": "*"
-  }
+	"name": "npm-keyword",
+	"version": "5.0.0",
+	"description": "Get a list of npm packages with a certain keyword",
+	"license": "MIT",
+	"repository": "sindresorhus/npm-keyword",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd-check"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"npm",
+		"keyword",
+		"package",
+		"packages",
+		"pkg",
+		"registry",
+		"find",
+		"search"
+	],
+	"dependencies": {
+		"got": "^9.6.0",
+		"registry-url": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "^1.3.1",
+		"tsd-check": "^0.3.0",
+		"xo": "^0.24.0"
+	}
 }
