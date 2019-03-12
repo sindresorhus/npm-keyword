@@ -71,7 +71,8 @@ test('npmKeyword.count() using an array of keywords', async t => {
 });
 
 test('npmKeyword.count() using wrong type for keywords parameter', async t => {
-	const error = await t.throwsAsync(npmKeyword.count({keyword: 'gulpplugin'}));
-
-	t.is(error.message, 'Keyword must be either a string or an array of strings');
+	await t.throwsAsync(
+		npmKeyword.count({keyword: 'gulpplugin'}),
+		'Keyword must be either a string or an array of strings'
+	);
 });

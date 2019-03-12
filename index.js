@@ -1,5 +1,4 @@
 'use strict';
-
 const got = require('got');
 const registryUrl = require('registry-url');
 
@@ -21,12 +20,15 @@ async function get(keyword, options) {
 }
 
 const npmKeyword = async (keyword, options) => {
-	options = {size: 250, ...options};
+	options = {
+		size: 250,
+		...options
+	};
 
-	const data = await get(keyword, options);
-	return data.objects.map(el => ({
-		name: el.package.name,
-		description: el.package.description
+	const {objects} = await get(keyword, options);
+	return objects.map(element => ({
+		name: element.package.name,
+		description: element.package.description
 	}));
 };
 
@@ -34,10 +36,13 @@ module.exports = npmKeyword;
 module.exports.default = npmKeyword;
 
 module.exports.names = async (keyword, options) => {
-	options = {size: 250, ...options};
+	options = {
+		size: 250,
+		...options
+	};
 
-	const data = await get(keyword, options);
-	return data.objects.map(x => x.package.name);
+	const {objects} = await get(keyword, options);
+	return objects.map(element => element.package.name);
 };
 
 module.exports.count = async keyword => {

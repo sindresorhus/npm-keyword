@@ -47,7 +47,7 @@ One or more keywords. Only matches packages that have *all* the given keywords.
 
 #### options
 
-Type: `object`
+Type: `Object`
 
 ##### size
 
@@ -69,7 +69,7 @@ One or more keywords. Only matches packages that have *all* the given keywords.
 
 #### options
 
-Type: `object`
+Type: `Object`
 
 ##### size
 
