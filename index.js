@@ -33,6 +33,7 @@ const npmKeyword = async (keyword, options) => {
 };
 
 module.exports = npmKeyword;
+// TODO: Remove this for the next major release
 module.exports.default = npmKeyword;
 
 module.exports.names = async (keyword, options) => {
