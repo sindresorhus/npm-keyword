@@ -1,6 +1,17 @@
 'use strict';
 const got = require('got');
 const registryUrl = require('registry-url');
+const npmConf = require('npm-conf');
+
+function getAuth() {
+	const conf = npmConf();
+	const auth = conf.get('_auth');
+	if (auth) {
+		return Buffer.from(auth, 'base64');
+	}
+
+	return auth;
+}
 
 async function get(keyword, options) {
 	if (typeof keyword !== 'string' && !Array.isArray(keyword)) {
@@ -15,7 +26,7 @@ async function get(keyword, options) {
 
 	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${options.size}`;
 
-	const {body} = await got(url, {json: true});
+	const {body} = await got(url, {json: true, auth: getAuth()});
 	return body;
 }
 
