@@ -7,7 +7,7 @@ function getAuth() {
 	const conf = npmConf();
 	const auth = conf.get('_auth');
 	if (auth) {
-		return Buffer.from(auth, 'base64');
+		return Buffer.from(auth, 'base64').toString('ascii');
 	}
 
 	return auth;
@@ -58,6 +58,7 @@ module.exports.names = async (keyword, options) => {
 };
 
 module.exports.count = async keyword => {
-	const {total} = await get(keyword, {size: 1});
-	return total;
+	const result = await get(keyword, {size: 1});
+	require('fs').writeFile('test.txt', JSON.stringify(result));
+	return result.total;
 };
