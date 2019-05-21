@@ -1,6 +1,6 @@
 import {expectType} from 'tsd';
 import npmKeyword = require('.');
-import  {PackageDescriptor} from '.';
+import {PackageDescriptor} from '.';
 
 expectType<Promise<PackageDescriptor[]>>(npmKeyword('gulpplugin'));
 expectType<Promise<PackageDescriptor[]>>(npmKeyword('gulpplugin', {size: 10}));

@@ -52,7 +52,7 @@ declare const npmKeyword: {
 	```
 	*/
 	names(
-		keyword: string | string[],
+		keyword: string | readonly string[],
 		options?: npmKeyword.Options
 	): Promise<string[]>;
 
@@ -72,7 +72,7 @@ declare const npmKeyword: {
 	})();
 	```
 	*/
-	count(keyword: string | string[]): Promise<number>;
+	count(keyword: string | readonly string[]): Promise<number>;
 
 	// TODO: Remove this for the next major release
 	default: typeof npmKeyword;
