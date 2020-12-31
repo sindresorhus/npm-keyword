@@ -1,4 +1,4 @@
-# npm-keyword [![Build Status](https://travis-ci.org/sindresorhus/npm-keyword.svg?branch=master)](https://travis-ci.org/sindresorhus/npm-keyword)
+# npm-keyword
 
 > Get a list of npm packages with a certain keyword
 
