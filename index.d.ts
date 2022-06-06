@@ -1,81 +1,68 @@
-declare namespace npmKeyword {
-	interface Options {
-		/**
-		Limits the amount of results.
+export type Options = {
+	/**
+	Limits the amount of results.
 
-		@default 250
-		*/
-		readonly size?: number;
-	}
+	@default 250
+	*/
+	readonly size?: number;
+};
 
-	interface PackageDescriptor {
-		readonly name: string;
-		readonly description: string;
-	}
-}
+export type PackageDescriptor = {
+	readonly name: string;
+	readonly description: string;
+};
 
 declare const npmKeyword: {
 	/**
-	Get a list of npm packages with a certain keyword.
+	Get a list of npm packages with certain keywords.
 
-	@param keyword - One or more keywords. Only matches packages that have *all* the given keywords. Example: `['string', 'camelcase']`.
-	@returns A list of packages having the specified keyword in their package.json `keyword` property.
+	@param keyword - One or more keywords. Only matches packages that have *all* the given keywords.
+	@returns A list of packages having the specified keywords in their package.json `keyword` property.
 
 	@example
 	```
-	import npmKeyword = require('npm-keyword');
+	import npmKeyword from 'npm-keyword';
 
-	(async () => {
-		console.log(await npmKeyword('gulpplugin'));
-		//=> [{name: 'gulp-autoprefixer', description: '…'}, …]
-	})();
+	console.log(await npmKeyword('gulpplugin'));
+	//=> [{name: 'gulp-autoprefixer', description: '…'}, …]
 	```
 	*/
-	(keyword: string | string[], options?: npmKeyword.Options): Promise<
-		npmKeyword.PackageDescriptor[]
-	>;
+	(keyword: string | readonly string[], options?: Options): Promise<PackageDescriptor[]>;
 
 	/**
-	Get a list of npm package names with a certain keyword.
+	Get a list of npm package names with certain keywords.
 
 	@param keyword - One or more keywords. Only matches packages that have *all* the given keywords. Example: `['string', 'camelcase']`.
 	@returns A list of package names. Use this if you don't need the description as it's faster.
 
 	@example
 	```
-	import npmKeyword = require('npm-keyword');
+	import npmKeyword from 'npm-keyword';
 
-	(async () => {
-		console.log(await npmKeyword.names('gulpplugin'));
-		//=> ['gulp-autoprefixer', …]
-	})();
+	console.log(await npmKeyword.names('gulpplugin'));
+	//=> ['gulp-autoprefixer', …]
 	```
 	*/
 	names(
 		keyword: string | readonly string[],
-		options?: npmKeyword.Options
+		options?: Options
 	): Promise<string[]>;
 
 	/**
-	Get the count of npm packages names with a certain keyword.
+	Get the count of npm packages names with certain keywords.
 
 	@param keyword - One or more keywords. Only matches packages that have *all* the given keywords. Example: `['string', 'camelcase']`.
 	@returns The count of packages.
 
 	@example
 	```
-	import npmKeyword = require('npm-keyword');
+	import npmKeyword from 'npm-keyword';
 
-	(async () => {
-		console.log(await npmKeyword.count('gulpplugin'));
-		//=> 3457
-	})();
+	console.log(await npmKeyword.count('gulpplugin'));
+	//=> 3457
 	```
 	*/
 	count(keyword: string | readonly string[]): Promise<number>;
-
-	// TODO: Remove this for the next major release
-	default: typeof npmKeyword;
 };
 
-export = npmKeyword;
+export default npmKeyword;

@@ -1,52 +1,37 @@
-'use strict';
-const got = require('got');
-const registryUrl = require('registry-url');
+import got from 'got';
+import registryUrl from 'registry-url';
 
-async function get(keyword, options) {
+const get = async (keyword, {size = 250} = {}) => {
 	if (typeof keyword !== 'string' && !Array.isArray(keyword)) {
-		throw new TypeError('Keyword must be either a string or an array of strings');
+		throw new TypeError('The keyword must be either a string or an array of strings');
 	}
 
-	if (options.size < 1 || options.size > 250) {
-		throw new TypeError('Size option must be between 1 and 250');
+	if (size === 0 || size > 250) {
+		throw new TypeError('The `size` option must be in the range 1...250');
 	}
 
 	keyword = encodeURIComponent(keyword).replace('%2C', '+');
 
-	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${options.size}`;
+	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${size}`;
 
-	const {body} = await got(url, {json: true});
-	return body;
-}
-
-const npmKeyword = async (keyword, options) => {
-	options = {
-		size: 250,
-		...options
-	};
-
-	const {objects} = await get(keyword, options);
-	return objects.map(element => ({
-		name: element.package.name,
-		description: element.package.description
-	}));
+	return got(url).json();
 };
 
-module.exports = npmKeyword;
-// TODO: Remove this for the next major release
-module.exports.default = npmKeyword;
+export default async function npmKeyword(keyword, options) {
+	const {objects} = await get(keyword, options);
 
-module.exports.names = async (keyword, options) => {
-	options = {
-		size: 250,
-		...options
-	};
+	return objects.map(element => ({
+		name: element.package.name,
+		description: element.package.description,
+	}));
+}
 
+npmKeyword.names = async (keyword, options) => {
 	const {objects} = await get(keyword, options);
 	return objects.map(element => element.package.name);
 };
 
-module.exports.count = async keyword => {
+npmKeyword.count = async keyword => {
 	const {total} = await get(keyword, {size: 1});
 	return total;
 };

@@ -1,5 +1,5 @@
 import test from 'ava';
-import npmKeyword from '.';
+import npmKeyword from './index.js';
 
 test('npmKeyword()', async t => {
 	const packages = await npmKeyword('gulpplugin');
@@ -22,15 +22,21 @@ test('npmKeyword() using invalid options', async t => {
 });
 
 test('npmKeyword() size < 1', async t => {
-	const error = await t.throwsAsync(npmKeyword('gulpplugin', {size: 0}));
-
-	t.is(error.message, 'Size option must be between 1 and 250');
+	await t.throwsAsync(
+		npmKeyword('gulpplugin', {size: 0}),
+		{
+			message: /The `size` option/,
+		},
+	);
 });
 
 test('npmKeyword() size > 250', async t => {
-	const error = await t.throwsAsync(npmKeyword('gulpplugin', {size: 255}));
-
-	t.is(error.message, 'Size option must be between 1 and 250');
+	await t.throwsAsync(
+		npmKeyword('gulpplugin', {size: 255}),
+		{
+			message: /The `size` option/,
+		},
+	);
 });
 
 test('npmKeyword.names()', async t => {
@@ -73,6 +79,8 @@ test('npmKeyword.count() using an array of keywords', async t => {
 test('npmKeyword.count() using wrong type for keywords parameter', async t => {
 	await t.throwsAsync(
 		npmKeyword.count({keyword: 'gulpplugin'}),
-		'Keyword must be either a string or an array of strings'
+		{
+			message: /The keyword must be/,
+		},
 	);
 });

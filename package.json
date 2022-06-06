@@ -1,16 +1,20 @@
 {
 	"name": "npm-keyword",
 	"version": "6.1.0",
-	"description": "Get a list of npm packages with a certain keyword",
+	"description": "Get a list of npm packages with keywords",
 	"license": "MIT",
 	"repository": "sindresorhus/npm-keyword",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
+	"type": "module",
+	"exports": "./index.js",
+	"types": "./index.d.ts",
 	"engines": {
-		"node": ">=8"
+		"node": ">=14.16"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -30,12 +34,12 @@
 		"search"
 	],
 	"dependencies": {
-		"got": "^9.6.0",
-		"registry-url": "^5.1.0"
+		"got": "^12.1.0",
+		"registry-url": "^6.0.0"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"tsd": "^0.7.3",
-		"xo": "^0.24.0"
+		"ava": "^4.3.0",
+		"tsd": "^0.20.0",
+		"xo": "^0.49.0"
 	}
 }
