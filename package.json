@@ -1,6 +1,6 @@
 {
 	"name": "npm-keyword",
-	"version": "6.1.0",
+	"version": "7.0.0",
 	"description": "Get a list of npm packages with keywords",
 	"license": "MIT",
 	"repository": "sindresorhus/npm-keyword",
