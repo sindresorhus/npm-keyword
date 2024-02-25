@@ -1,4 +1,4 @@
-import got from 'got';
+import ky from 'ky';
 import registryUrl from 'registry-url';
 
 const get = async (keyword, {size = 250} = {}) => {
@@ -14,7 +14,7 @@ const get = async (keyword, {size = 250} = {}) => {
 
 	const url = `${registryUrl()}-/v1/search?text=keywords:${keyword}&size=${size}`;
 
-	return got(url).json();
+	return ky(url).json();
 };
 
 export default async function npmKeyword(keyword, options) {
