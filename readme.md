@@ -11,10 +11,16 @@ npm install npm-keyword
 ## Usage
 
 ```js
-import npmKeyword from 'npm-keyword';
+import {npmKeyword, npmKeywordNames, npmKeywordCount} from 'npm-keyword';
 
 console.log(await npmKeyword('gulpplugin'));
 //=> [{name: 'gulp-autoprefixer', description: '…'}, …]
+
+console.log(await npmKeywordNames('gulpplugin'));
+//=> ['gulp-autoprefixer', …]
+
+console.log(await npmKeywordCount('gulpplugin'));
+//=> 3457
 ```
 
 ## Caveat
@@ -45,7 +51,7 @@ Default: `250`
 
 Limits the amount of results.
 
-### npmKeyword.names(keywords, options?)
+### npmKeywordNames(keywords, options?)
 
 Returns a promise for a list of package names.
 
@@ -67,7 +73,7 @@ Default: `250`
 
 Limits the amount of results.
 
-### npmKeyword.count(keywords)
+### npmKeywordCount(keywords)
 
 Returns a promise for the count of packages.
 

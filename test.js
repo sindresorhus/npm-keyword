@@ -1,5 +1,5 @@
 import test from 'ava';
-import npmKeyword from './index.js';
+import {npmKeyword, npmKeywordNames, npmKeywordCount} from './index.js';
 
 test('npmKeyword()', async t => {
 	const packages = await npmKeyword('gulpplugin');
@@ -39,46 +39,46 @@ test('npmKeyword() size > 250', async t => {
 	);
 });
 
-test('npmKeyword.names()', async t => {
-	const packageNames = await npmKeyword.names('gulpplugin');
+test('npmKeywordNames()', async t => {
+	const packageNames = await npmKeywordNames('gulpplugin');
 
 	t.is(packageNames.length, 250);
 	t.is(typeof packageNames[0], 'string');
 	t.true(packageNames[0].length > 0);
 });
 
-test('npmKeyword.names() using the size option', async t => {
-	const packageNames = await npmKeyword.names('gulpplugin', {size: 10});
+test('npmKeywordNames() using the size option', async t => {
+	const packageNames = await npmKeywordNames('gulpplugin', {size: 10});
 
 	t.is(packageNames.length, 10);
 });
 
-test('npmKeyword.names() using invalid options', async t => {
-	const packageNames = await npmKeyword.names('gulpplugin', {foo: 'bar'});
+test('npmKeywordNames() using invalid options', async t => {
+	const packageNames = await npmKeywordNames('gulpplugin', {foo: 'bar'});
 
 	t.is(packageNames.length, 250);
 });
 
-test('npmKeyword.count()', async t => {
-	const packagesWithValidKeyword = await npmKeyword.count('gulpplugin');
-	const packagesWithInvalidKeyword = await npmKeyword.count('äąâ');
+test('npmKeywordCount()', async t => {
+	const packagesWithValidKeyword = await npmKeywordCount('gulpplugin');
+	const packagesWithInvalidKeyword = await npmKeywordCount('äąâ');
 
 	t.true(packagesWithValidKeyword > 0);
 	t.is(typeof packagesWithValidKeyword, 'number');
 	t.is(packagesWithInvalidKeyword, 0);
 });
 
-test('npmKeyword.count() using an array of keywords', async t => {
-	const packagesWithOneKeyword = await npmKeyword.count('gulpplugin');
-	const packagesWithMultipleKeywords = await npmKeyword.count(['gulpplugin', 'sass', 'css']);
+test('npmKeywordCount() using an array of keywords', async t => {
+	const packagesWithOneKeyword = await npmKeywordCount('gulpplugin');
+	const packagesWithMultipleKeywords = await npmKeywordCount(['gulpplugin', 'sass', 'css']);
 
 	t.true(packagesWithMultipleKeywords > 0);
 	t.true(packagesWithMultipleKeywords < packagesWithOneKeyword);
 });
 
-test('npmKeyword.count() using wrong type for keywords parameter', async t => {
+test('npmKeywordCount() using wrong type for keywords parameter', async t => {
 	await t.throwsAsync(
-		npmKeyword.count({keyword: 'gulpplugin'}),
+		npmKeywordCount({keyword: 'gulpplugin'}),
 		{
 			message: /The keyword must be/,
 		},
